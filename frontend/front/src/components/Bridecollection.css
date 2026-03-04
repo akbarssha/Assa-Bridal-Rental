@@ -1,0 +1,17 @@
+.mySwiper .swiper-slide {
+  transition: all 0.4s ease;
+  opacity: 0.5;
+  transform: scale(0.85);
+  filter: blur(4px);
+}
+
+.mySwiper .swiper-slide-active {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+}
+
+.mySwiper img {
+  width: 100%;
+  border-radius: 12px;
+}

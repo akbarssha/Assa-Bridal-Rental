@@ -1,0 +1,93 @@
+import { useEffect, useState } from "react";
+import API from "../components/api/axios";
+import { useNavigate } from "react-router-dom";
+export default function Bridepagethree() {
+  const navigate = useNavigate();
+  const [outfits, setOutfits] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  useEffect(() => {
+    API.get("/outfits").then((res) => {
+      const brideOutfits = res.data.filter((o) => o.forWhom === "bride");
+      setOutfits(brideOutfits);
+    });
+  }, []);
+
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-rose-300 via-pink-300 to-amber-200 py-16 px-6">
+      
+
+      <h2 className="text-4xl font-bold text-center text-white mb-12 drop-shadow-lg">
+        Bridal Collection 👑
+      </h2>
+
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        
+        {outfits.map((outfit) => (
+          <div
+            key={outfit._id}
+            className="group relative rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-500"
+          >
+           <img
+  src={`http://localhost:3036${outfit.images[0]}`}
+  alt={outfit.title}
+  onClick={() =>
+    setSelectedImage(`http://localhost:3036${outfit.images[0]}`)
+  }
+  className="w-full h-full object-cover object-top group-hover:scale-110 transition-transform duration-700 cursor-pointer"
+/>
+
+            {/* Glass Effect Card Bottom */}
+            <div className="absolute bottom-0 left-0 right-0 bg-white/80 backdrop-blur-lg p-5 flex flex-col gap-2">
+              <h3 className="font-semibold text-gray-800 text-xl">
+                {outfit.title}
+              </h3>
+
+              <p className="text-gray-600 text-sm">
+                {outfit.description}
+              </p>
+
+              <p className="text-pink-600 font-bold text-lg">
+                ₹{outfit.pricePerDay} / day
+              </p>
+
+              {/* Book Now Button */}
+             <button
+  className="mt-2 px-4 py-2 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-all duration-300"
+  onClick={() => navigate(`/l`)}
+>
+  Login To Book
+</button>
+            </div>
+          </div>
+        ))}
+        {selectedImage && (
+  <div
+    className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
+    onClick={() => setSelectedImage(null)}
+  >
+    <div
+      className="relative max-w-4xl w-full px-4"
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* Close Button */}
+      <button
+        className="absolute top-2 right-4 text-white text-3xl font-bold"
+        onClick={() => setSelectedImage(null)}
+      >
+        ×
+      </button>
+
+      <img
+        src={selectedImage}
+        alt="Full View"
+        className="w-full max-h-[90vh] object-contain rounded-2xl shadow-2xl"
+      />
+    </div>
+  </div>
+)}
+      </div>
+    </div>
+  );
+}
