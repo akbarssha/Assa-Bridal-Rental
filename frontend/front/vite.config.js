@@ -8,7 +8,11 @@ export default defineConfig({
   "./src/components/Header.jsx",
 ],
   theme: {
-    extend: {},
+    extend: {
+       fontFamily: {
+      poppins: ['Poppins', 'sans-serif'],
+    },
+    },
   },
   plugins: [
     tailwindcss(),react()

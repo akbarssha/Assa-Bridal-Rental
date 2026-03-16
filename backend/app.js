@@ -6,7 +6,15 @@ const bookingRoutes = require("./routes/bookingRoutes");
 const contactRoutes = require("./routes/contactRoutes");
 
 const cors = require("cors");
-app.use(cors());
+
+app.use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://assa-bridal-rental.vercel.app"
+  ],
+  credentials: true
+}));
+
 
 app.use("/uploads", express.static("uploads"));
 app.use(express.json());
