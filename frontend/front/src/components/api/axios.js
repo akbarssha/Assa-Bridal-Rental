@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://assa-bridal-backend.onrender.com",
+  baseURL: "https://assa-bridal-backend.onrender.com/api",
 });
 
 // attach token automatically
