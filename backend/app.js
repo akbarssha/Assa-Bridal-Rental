@@ -11,10 +11,13 @@ const contactRoutes = require("./routes/contactRoutes");
 app.use(cors({
   origin: [
     "http://localhost:5173",
+    "http://127.0.0.1:5173",
     "https://assa-bridal-rental.vercel.app"
   ],
-  credentials: true
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"]
 }));
+app.options("*", cors());
 
 app.use(express.json());
 
