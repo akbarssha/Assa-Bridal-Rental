@@ -38,7 +38,7 @@ Integrated Razorpay payment gateway to enable secure and smooth online transacti
 * Handling real-world user flows
 * Managing frontend-backend communication
 * Order history page
-* Admin dashboard
+* Ventor dashboard
 * Order cancel option
 * Product availability tracking
 
