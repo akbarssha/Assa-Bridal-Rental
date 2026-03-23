@@ -2,7 +2,7 @@ import React from "react";
 import assalogo from "./images/assalogo.png";
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const navigation = [
   { name: "Home", path: "/hut" },
@@ -15,6 +15,13 @@ function classNames(...classes) {
 
 export default function Navbartwo() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  };
 
   return (
     <Disclosure
@@ -56,6 +63,18 @@ export default function Navbartwo() {
                     </Link>
                   );
                 })}
+
+                {/* Logout Button */}
+                {token && (
+                  <button
+                    onClick={handleLogout}
+                    className="ml-2 px-4 py-2 rounded-xl 
+                    bg-red-500 text-white font-semibold 
+                    hover:bg-red-600 transition-all duration-300 shadow-md"
+                  >
+                    Logout
+                  </button>
+                )}
               </div>
 
               {/* Mobile Button */}
@@ -83,6 +102,17 @@ export default function Navbartwo() {
                   {item.name}
                 </Link>
               ))}
+
+              {/* Mobile Logout Button */}
+              {token && (
+                <button
+                  onClick={handleLogout}
+                  className="mt-2 text-left px-4 py-2 rounded-lg 
+                  bg-red-500 text-white hover:bg-red-600 transition"
+                >
+                  Logout
+                </button>
+              )}
             </div>
           </Disclosure.Panel>
         </>
