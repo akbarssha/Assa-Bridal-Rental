@@ -20,35 +20,33 @@ export default function HomeUser() {
         </p>
 
         {/* Buttons */}
-        <div className="flex flex-col sm:flex-row gap-5 sm:gap-8 w-full max-w-md sm:max-w-none">
+       <div className="flex flex-col sm:flex-row gap-5 sm:gap-8 justify-center w-full max-w-md mx-auto">
+  {/* Bride Button */}
+  <button
+    onClick={() => navigate("/bpt")}
+    className="px-8 sm:px-14 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold 
+               text-white 
+               bg-gradient-to-r from-rose-600 via-red-600 to-red-800
+               shadow-xl hover:shadow-red-500/40
+               transition-all duration-500 
+               hover:scale-105 hover:brightness-110"
+  >
+    Bride Collection 👰
+  </button>
 
-          {/* Bride Button */}
-          <button
-            onClick={() => navigate("/bpt")}
-            className="w-full sm:w-auto px-8 sm:px-14 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold 
-                       text-white 
-                       bg-gradient-to-r from-rose-600 via-red-600 to-red-800
-                       shadow-xl hover:shadow-red-500/40
-                       transition-all duration-500 
-                       hover:scale-105 hover:brightness-110"
-          >
-            Bride Collection 👰
-          </button>
-
-          {/* Groom Button */}
-          <button
-            onClick={() => navigate("/gpt")}
-            className="w-full sm:w-auto px-8 sm:px-14 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold 
-                       text-white 
-                       bg-gradient-to-r from-red-800 via-rose-700 to-red-900
-                       shadow-xl hover:shadow-rose-500/40
-                       transition-all duration-500 
-                       hover:scale-105 hover:brightness-110"
-          >
-            Groom Collection 🤵
-          </button>
-
-        </div>
+  {/* Groom Button */}
+  <button
+    onClick={() => navigate("/gpt")}
+    className="px-8 sm:px-14 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold 
+               text-white 
+               bg-gradient-to-r from-red-800 via-rose-700 to-red-900
+               shadow-xl hover:shadow-rose-500/40
+               transition-all duration-500 
+               hover:scale-105 hover:brightness-110"
+  >
+    Groom Collection 🤵
+  </button>
+</div>
       </div>
 
       <Login />
