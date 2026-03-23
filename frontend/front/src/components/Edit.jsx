@@ -16,10 +16,18 @@ export default function Edit() {
   const [imagePreview, setImagePreview] = useState(null);
   const [imageFile, setImageFile] = useState(null);
 
+  // ✅ FIX: Base URL from ENV
+  const BASE_URL =
+    import.meta.env.VITE_API_URL || "http://localhost:3036";
+
   useEffect(() => {
     API.get(`/outfits/${id}`).then((res) => {
       setForm(res.data);
-      setImagePreview(`http://localhost:3036${res.data.images[0]}`);
+
+      // ✅ FIXED IMAGE PREVIEW
+      if (res.data.images && res.data.images.length > 0) {
+        setImagePreview(`${BASE_URL}${res.data.images[0]}`);
+      }
     });
   }, [id]);
 
@@ -28,8 +36,12 @@ export default function Edit() {
   };
 
   const handleImageChange = (e) => {
-    setImageFile(e.target.files[0]);
-    setImagePreview(URL.createObjectURL(e.target.files[0]));
+    const file = e.target.files[0];
+    setImageFile(file);
+
+    if (file) {
+      setImagePreview(URL.createObjectURL(file));
+    }
   };
 
   const handleSubmit = async (e) => {

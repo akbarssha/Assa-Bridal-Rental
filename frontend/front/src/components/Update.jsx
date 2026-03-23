@@ -7,6 +7,10 @@ export default function Update() {
   const [outfits, setOutfits] = useState([]);
   const navigate = useNavigate();
 
+  // ✅ FIX: Base URL
+  const BASE_URL =
+    import.meta.env.VITE_API_URL || "http://localhost:3036";
+
   useEffect(() => {
     fetchOutfits();
   }, []);
@@ -47,9 +51,9 @@ export default function Update() {
             key={outfit._id}
             className="bg-white rounded-3xl shadow-2xl overflow-hidden"
           >
-            {/* Image */}
+            {/* ✅ FIXED IMAGE */}
             <img
-              src={`http://localhost:3036${outfit.images[0]}`}
+              src={`${BASE_URL}${outfit.images[0]}`}
               alt={outfit.title}
               className="h-64 w-full object-cover"
             />

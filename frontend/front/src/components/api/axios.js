@@ -1,9 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://assa-bridal-rental.onrender.com/api"
-
-  
+  baseURL: `${import.meta.env.VITE_API_URL}/api`
 });
 
 // attach token automatically
