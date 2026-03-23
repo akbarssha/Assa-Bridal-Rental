@@ -26,19 +26,19 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-300 via-pink-300 to-amber-200 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-red-700 via-rose-700 to-red-900 flex items-center justify-center px-4 py-10 sm:py-16">
       
       <form
         onSubmit={handleSubmit}
-        className="backdrop-blur-xl bg-white/30 border border-white/40 shadow-2xl rounded-3xl p-10 w-full max-w-md transition-all duration-500 hover:scale-105"
+        className="max-w-md w-full bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-8 sm:p-10 transition-all duration-500 hover:scale-105"
       >
-        <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
+        <h2 className="text-2xl sm:text-4xl font-bold text-center text-red-900 mb-8 drop-shadow-lg">
           Create Account 💍
         </h2>
 
         {/* Name */}
         <div className="mb-5">
-          <label className="block text-gray-700 mb-2 font-medium">
+          <label className="block text-red-900 mb-2 font-medium">
             Full Name
           </label>
           <input
@@ -46,13 +46,13 @@ export default function Register() {
             name="name"
             placeholder="Enter your name"
             onChange={handleChange}
-            className="w-full px-4 py-3 rounded-xl bg-white/60 backdrop-blur-md border border-white/40 focus:outline-none focus:ring-2 focus:ring-pink-400 transition-all"
+            className="w-full px-4 py-3 rounded-2xl bg-white/60 backdrop-blur-md border border-white/40 focus:outline-none focus:ring-2 focus:ring-rose-400 text-red-900 transition-all"
           />
         </div>
 
         {/* Email */}
         <div className="mb-5">
-          <label className="block text-gray-700 mb-2 font-medium">
+          <label className="block text-red-900 mb-2 font-medium">
             Email
           </label>
           <input
@@ -60,13 +60,13 @@ export default function Register() {
             name="email"
             placeholder="Enter your email"
             onChange={handleChange}
-            className="w-full px-4 py-3 rounded-xl bg-white/60 backdrop-blur-md border border-white/40 focus:outline-none focus:ring-2 focus:ring-pink-400 transition-all"
+            className="w-full px-4 py-3 rounded-2xl bg-white/60 backdrop-blur-md border border-white/40 focus:outline-none focus:ring-2 focus:ring-rose-400 text-red-900 transition-all"
           />
         </div>
 
         {/* Password */}
         <div className="mb-5">
-          <label className="block text-gray-700 mb-2 font-medium">
+          <label className="block text-red-900 mb-2 font-medium">
             Password
           </label>
           <input
@@ -74,19 +74,19 @@ export default function Register() {
             name="password"
             placeholder="Create a password"
             onChange={handleChange}
-            className="w-full px-4 py-3 rounded-xl bg-white/60 backdrop-blur-md border border-white/40 focus:outline-none focus:ring-2 focus:ring-pink-400 transition-all"
+            className="w-full px-4 py-3 rounded-2xl bg-white/60 backdrop-blur-md border border-white/40 focus:outline-none focus:ring-2 focus:ring-rose-400 text-red-900 transition-all"
           />
         </div>
 
         {/* Role */}
         <div className="mb-6">
-          <label className="block text-gray-700 mb-2 font-medium">
+          <label className="block text-red-900 mb-2 font-medium">
             Register As
           </label>
           <select
             name="role"
             onChange={handleChange}
-            className="w-full px-4 py-3 rounded-xl bg-white/60 backdrop-blur-md border border-white/40 focus:outline-none focus:ring-2 focus:ring-pink-400 transition-all"
+            className="w-full px-4 py-3 rounded-2xl bg-white/60 backdrop-blur-md border border-white/40 focus:outline-none focus:ring-2 focus:ring-rose-400 text-red-900 transition-all"
           >
             <option value="customer">Customer</option>
             <option value="vendor">Vendor</option>
@@ -95,22 +95,21 @@ export default function Register() {
 
         <button
           type="submit"
-          className="w-full py-3 rounded-xl bg-gradient-to-r from-pink-500 to-rose-500 text-white font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+          className="w-full py-3 rounded-2xl bg-gradient-to-r from-red-600 to-rose-500 text-white font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
         >
           Register
         </button>
 
         {/* Login Section */}
-        <p className="text-center text-gray-700 mt-6">
+        <p className="text-center text-red-900 mt-6">
           Already have an account?{" "}
           <Link
             to="/"
-            className="text-pink-600 font-semibold hover:underline"
+            className="text-rose-500 font-semibold hover:underline"
           >
             Login
           </Link>
         </p>
-
       </form>
     </div>
   );

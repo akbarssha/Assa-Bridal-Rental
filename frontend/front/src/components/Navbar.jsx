@@ -1,9 +1,9 @@
 import React from "react";
 import assalogo from "./images/assalogo.png";
-import { Disclosure, Menu } from "@headlessui/react";
-import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link, useLocation } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Disclosure } from "@headlessui/react";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+
 const navigation = [
   { name: "Home", path: "/huth" },
   { name: "Bride Collection", path: "/bp" },
@@ -18,51 +18,50 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-function Navbar() {
+export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
-  const token = localStorage.getItem("token"); // ✅ define token
-const handleLogout = () => {
-  localStorage.removeItem("token"); // ✅ remove only token
-  // DO NOT use localStorage.clear()
-    navigate("/"); 
+  const token = localStorage.getItem("token");
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
   };
 
   return (
-
     <Disclosure
       as="nav"
-      className="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-xl border-b border-white/20"
+      className="fixed top-0 left-0 right-0 z-50 
+      bg-white/10 backdrop-blur-xl 
+      border-b border-white/20 shadow-lg"
     >
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-            <div className="relative flex h-16 items-center justify-between">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex h-16 items-center justify-between">
 
               {/* Logo */}
-              <div className="flex items-center">
-                <Link to="/">
-                  <img
-                    alt="Assa Rentals"
-                    src={assalogo}
-                    className="h-8 w-auto"
-                  />
-                </Link>
-              </div>
+              <Link to="/" className="flex items-center gap-2">
+                <img src={assalogo} alt="logo" className="h-9" />
+                <span className="text-white font-bold hidden sm:block">
+                  Assa Rentals
+                </span>
+              </Link>
 
               {/* Desktop Menu */}
-              <div className="hidden sm:flex space-x-4 items-center">
+              <div className="hidden md:flex items-center gap-4">
                 {navigation.map((item) => {
-                  const isCurrent = location.pathname === item.path;
+                  const isActive = location.pathname === item.path;
+
                   return (
                     <Link
                       key={item.name}
                       to={item.path}
                       className={classNames(
-                        isCurrent
-                          ? "bg-white/20 text-white"
-                          : "text-white hover:text-black hover:bg-white/20",
-                        "rounded-md px-3 py-2 text-sm font-semibold transition"
+                        isActive
+                          ? "bg-white/25 text-white shadow-md"
+                          : "text-white/90 hover:text-white hover:bg-white/20",
+                        "px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300"
                       )}
                     >
                       {item.name}
@@ -70,20 +69,21 @@ const handleLogout = () => {
                   );
                 })}
 
-                {/* ✅ Logout Button */}
                 {token && (
                   <button
                     onClick={handleLogout}
-                    className="ml-4 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+                    className="ml-2 px-4 py-2 rounded-xl 
+                    bg-red-500 text-white font-semibold 
+                    hover:bg-red-600 transition-all duration-300 shadow-md"
                   >
                     Logout
                   </button>
                 )}
               </div>
 
-              {/* Mobile Menu Button */}
-              <div className="sm:hidden">
-                <Disclosure.Button className="p-2 text-white">
+              {/* Mobile Button */}
+              <div className="md:hidden">
+                <Disclosure.Button className="p-2 text-white hover:bg-white/20 rounded-lg transition">
                   {open ? (
                     <XMarkIcon className="h-6 w-6" />
                   ) : (
@@ -95,24 +95,23 @@ const handleLogout = () => {
           </div>
 
           {/* Mobile Menu */}
-          <Disclosure.Panel className="sm:hidden bg-white/10 backdrop-blur-xl">
-            <div className="space-y-1 px-2 pt-2 pb-3">
+          <Disclosure.Panel className="md:hidden px-4 pb-4 bg-white/10 backdrop-blur-xl border-t border-white/20">
+            <div className="flex flex-col gap-2 mt-3">
               {navigation.map((item) => (
-                <Disclosure.Button
+                <Link
                   key={item.name}
-                  as={Link}
                   to={item.path}
-                  className="block rounded-md px-3 py-2 text-white"
+                  className="text-white px-4 py-2 rounded-lg hover:bg-white/20 transition"
                 >
                   {item.name}
-                </Disclosure.Button>
+                </Link>
               ))}
 
-              {/* ✅ Mobile Logout */}
               {token && (
                 <button
                   onClick={handleLogout}
-                  className="w-full text-left px-3 py-2 text-red-400 font-semibold"
+                  className="mt-2 text-left px-4 py-2 rounded-lg 
+                  bg-red-500 text-white hover:bg-red-600 transition"
                 >
                   Logout
                 </button>
@@ -124,5 +123,3 @@ const handleLogout = () => {
     </Disclosure>
   );
 }
-
-export default Navbar;

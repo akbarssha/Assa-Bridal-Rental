@@ -1,8 +1,10 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
+
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
+
 import groom1 from "../assets/groom1.jpg";
 import groom2 from "../assets/groom2.jpg";
 import groom3 from "../assets/groom3.jpg";
@@ -14,17 +16,15 @@ const images = [groom1, groom2, groom3, groom4, groom5, groom6];
 
 export default function Groomcollection() {
   return (
-   
-    <div className="w-full py-20 bg-gradient-to-br from-blue-300 via-indigo-300 to-slate-300 overflow-x-hidden">
-        {/* <Navbar/> */}
-      <div className="w-full py-20 max-w-6xl mx-auto">
+    <div className="w-full py-12 sm:py-16 md:py-20 bg-gradient-to-br from-blue-300 via-indigo-300 to-slate-300 overflow-x-hidden">
+      
+      <div className="w-full max-w-6xl mx-auto px-2 sm:px-4">
         <Swiper
           effect="coverflow"
           grabCursor={true}
           centeredSlides={true}
           loop={true}
-          slidesPerView={3}
-          spaceBetween={20}
+          spaceBetween={16}
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
@@ -33,7 +33,7 @@ export default function Groomcollection() {
             rotate: 0,
             stretch: 0,
             depth: 120,
-            modifier: 1.8,
+            modifier: 1.6,
             slideShadows: false,
           }}
           pagination={{ clickable: true }}
@@ -63,8 +63,14 @@ export default function Groomcollection() {
                     <img
                       src={image}
                       alt={`Groom-${index}`}
-                      className="rounded-3xl w-full h-[450px] object-cover object-top 
-                                 shadow-2xl shadow-blue-500/40 border border-blue-400/30"
+                      className="
+                        rounded-2xl sm:rounded-3xl 
+                        w-full 
+                        h-[280px] sm:h-[350px] md:h-[420px] 
+                        object-cover object-top
+                        shadow-xl sm:shadow-2xl shadow-blue-500/30
+                        border border-blue-400/20
+                      "
                     />
                   </div>
                 );
@@ -73,7 +79,6 @@ export default function Groomcollection() {
           ))}
         </Swiper>
       </div>
-
     </div>
   );
 }
